@@ -7,7 +7,7 @@
 I love Spatie tags, but my app requires **_both translated tags and generic tags_** that disregards language settings.
 
 # Installation
-composer.json
+Add this to `composer.json`
 ```php 
 "repositories": [
     {
@@ -16,15 +16,14 @@ composer.json
     },
 ```
 
-run
+Add this to `composer.json`
 ```
-composer require spatie/laravel-tags:dev-tina
+"spatie/laravel-tags": "dev-tina as 3.0.2"
 ```
 
-### Troubles with other packages?
-If other packages complain about the version. Alias the fork in `composer.json`
+Terminal
 ```
-"spatie/laravel-tags": "dev-tina as 3.0"
+composer update
 ```
 
 # Create tags with translations
