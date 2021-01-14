@@ -21,6 +21,12 @@ run
 composer require spatie/laravel-tags:dev-tina
 ```
 
+### Troubles with other packages?
+If other packages complain about the version. Alias the fork in `composer.json`
+```
+"spatie/laravel-tags": "dev-tina as 3.0"
+```
+
 # Create tags with translations
 This fork uses the `type` column to **_optionally_** set the language.
 You have to set the language when you create a tag if you want to retrieve it in a defined language.
