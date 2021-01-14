@@ -6,7 +6,6 @@
 # Use the `type` column for translations
 I love Spatie tags, but my app requires **_both translated tags and generic tags_** that disregards language settings.
 
-
 # Installation
 composer.json
 ```php 
@@ -67,7 +66,44 @@ Example, get tags with type `foo` with specified language (this example = Englis
 $model->tagsTranslated('foo', 'en');
 ```
 
-# The rest works like the parent package:
+# Compatible with Spatie Nova Tags field
+* Follow the same strategy as described when creating tags.
+* **Optionally** set the language use the `->type()` method.
+* https://github.com/spatie/nova-tags-field
+* Remember that you have to create relationships for **_each tag type_**, on the Model, if you want to use **_multiple_** tag fields in Nova.
+
+Example
+```php
+// in your Nova resource
+
+public function fields(Request $request)
+{
+    return [
+        // Create tags with category 'foo' in English
+        Tags::make('Tags', 'foo_en')->type('foo-en'),
+
+        // Create tags with category 'foo' in Swedish
+        Tags::make('Tags', 'foo_sv')->type('foo-sv'),
+    ];
+}
+
+// in your Model
+ public function foo_en()
+{
+    return $this
+        ->tags()
+        ->where('type', 'foo-en');
+}
+
+public function foo_sv()
+{
+    return $this
+        ->tags()
+        ->where('type', 'foo-sv');
+}
+```
+
+# Read the parent package docs:
 
 --------------
 # Add tags and taggable behaviour to a Laravel app
