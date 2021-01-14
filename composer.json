@@ -13,6 +13,11 @@
             "email": "freek@spatie.be",
             "homepage": "https://spatie.be",
             "role": "Developer"
+        },
+        {
+            "name": "Tina Hammar",
+            "email": "post@tinahammar.se",
+            "role": "Developer"
         }
     ],
     "require": {
