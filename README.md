@@ -3,8 +3,24 @@
 * slug col = string, not json
 * does not use Spatie laravel-translatable package
 
-# A Different way to handle translations
+# Use the `type` column for translations
 I love Spatie tags, but my app requires **_both translated tags and generic tags_** that disregards language settings.
+
+
+# Installation
+composer.json
+```php 
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/tanthammar/laravel-tags"
+    },
+```
+
+run
+```
+composer require spatie/laravel-tags:dev-tina
+```
 
 # Create tags with translations
 This fork uses the `type` column to **_optionally_** set the language.
@@ -25,6 +41,7 @@ $model->syncTagsWithType([...], 'foo-sv');
 ```
 
 # Get translated tags
+* You have to set a language in the `type` col when creating the tag, in order to later retrieve it, in a specific locale
 * This fork has a modified version of `tagsTranslated()`
 * If you don't pass the `$locale` attribute, the method falls back to `app()->getLocale()`
 * Function: `tagsTranslated($type = null, $locale = null)`
