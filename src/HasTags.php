@@ -43,7 +43,7 @@ trait HasTags
 
     /**
      * $locale Defaults to app()->getLocale()
-     * <br>If you pass a $type you'll get where() type = $type_$locale,
+     * <br>If you pass a $type you'll get where() type = "$type-$locale", (slug-cased)
      * <br>else, you'll get where() type = $locale
      * @param string|null $type
      * @param string|null $locale
@@ -52,7 +52,7 @@ trait HasTags
     public function tagsTranslated($type = null, $locale = null): MorphToMany
     {
         $locale = !is_null($locale) ? $locale : app()->getLocale();
-        $type = filled($type) ? $type . '_' . $locale : $locale;
+        $type = filled($type) ? $type . '-' . $locale : $locale;
         return $this
             ->morphToMany(self::getTagClassName(), 'taggable')
             ->where('type', $type)
