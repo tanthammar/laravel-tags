@@ -1,3 +1,58 @@
+# Spatie tags without Spatie laravel translatable
+* name col = string, not json
+* slug col = string, not json
+* does not use Spatie laravel-translatable package
+
+# A Different way to handle translations
+I love Spatie tags, but my app requires **_both translated tags and generic tags_** that disregards language settings.
+
+# Create tags with translations
+This fork uses the `type` column to **_optionally_** set the language.
+You have to set the language when you create a tag if you want to retrieve it in a defined language.
+
+Example, create tags in English
+```php 
+$model->syncTagsWithType([...], 'en');
+```
+### Use **snake-casing** for the type with the language as suffix
+Example create tags in English with type `foo`
+```php 
+$model->syncTagsWithType([...], 'foo-en');
+```
+Example create tags in Swedish with type `foo`
+```php 
+$model->syncTagsWithType([...], 'foo-sv');
+```
+
+# Get translated tags
+* This fork has a modified version of `tagsTranslated()`
+* If you don't pass the `$locale` attribute, the method falls back to `app()->getLocale()`
+* Function: `tagsTranslated($type = null, $locale = null)`
+
+Example, get tags in **_current locale_**
+```php
+$model->tagsTranslated();
+```
+Example, get tags in English
+```php
+$model->tagsTranslated('en');
+```
+Example, get tags in Swedish
+```php
+$model->tagsTranslated('sv');
+```
+Example, get tags with type `foo` in **_current locale_**
+```php
+$model->tagsTranslated('foo');
+```
+Example, get tags with type `foo` with specified language (this example = English)
+```php
+$model->tagsTranslated('foo', 'en');
+```
+
+# The rest works like the parent package:
+
+--------------
 # Add tags and taggable behaviour to a Laravel app
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-tags.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-tags)
