@@ -73,10 +73,9 @@ $model->tagsTranslated('foo', 'en');
 ```
 
 # Compatible with Spatie Nova Tags field
-* Follow the same strategy as described when creating tags.
-* **Optionally** set the language use the `->type()` method.
-* https://github.com/spatie/nova-tags-field
+* Follow the same strategy as described when creating tags to **optionally** set the language with the `->type()` method.
 * Remember that you have to create relationships for **_each tag type_**, on the Model, if you want to use **_multiple_** tag fields in Nova.
+* https://github.com/spatie/nova-tags-field
 
 Example
 ```php
